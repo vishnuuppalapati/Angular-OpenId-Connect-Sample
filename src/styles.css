@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+.loginwithIDP
+{
+    text-align: center;
+    
+}
+.loginButton{
+    color: white;
+    font-size: 16px;
+    padding: 7px;
+    background: rgb(23, 86, 148);
+    border: aliceblue;
+    border-radius: 0.5rem;
+}
+.loginButton:hover{
+    cursor: pointer;
+    background: dodgerblue;
+}
+
+.logOutButton{
+    color: white;
+    float: right; font-size: 20px;
+    background: rgb(23, 86, 148);
+    border-radius: 0.5rem;
+    border: aliceblue;
+}
+.logOutButton:hover{
+    cursor: pointer;
+    background: dodgerblue;
+}
+
+.accessedData{
+    background-color: rgba(0,0,0,0.075);
+    padding: 25px;
+}
+span.navbar-brand {
+    font-size: 26px;
+}

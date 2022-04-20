@@ -21,7 +21,7 @@ export class AuthService {
     return this.user != null && !this.user.expired;
   }
   getClaims(): any {
-    return this.user.profile;
+    return this.user;
   }
   startAuthentication(): Promise<void> {
     return this.manager.signinRedirect();
@@ -29,7 +29,6 @@ export class AuthService {
   completeAuthentication(): Promise<void> {
     return this.manager.signinRedirectCallback().then(user=>{
       this.user = user;
-      console.log(user);
       this.currentUser.next(true);
     })
   }

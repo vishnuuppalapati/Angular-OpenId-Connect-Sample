@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { map, Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -18,7 +19,23 @@ export class HomeComponent implements OnInit {
   
   getAllUsers()
   {
-     this._userProfile = JSON.stringify(this.authService.getClaims());
+    this._userProfile = JSON.stringify(this.authService.getClaims());
+    let data = JSON.parse(this._userProfile);
+    console.log(data);
+    let idToken = data.id_token;
+    this.getTransferIp(idToken).subscribe((resp:any)=>{
+      console.log("TokenResp: "+resp);
+    });
   }
+  getTransferIp(token:string):  Observable<any> {
+    console.log("TokenID: "+token);
+    let header = new HttpHeaders().set(
+      "Authorization", token);
 
+    return this.http.get("https://ensurity.ensurityzts.com/api/dashboard/GetLoginAnalyticsData", {headers:header}).pipe(
+      map(resp => {
+        return resp;
+      })
+    );
+  }
 }

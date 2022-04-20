@@ -21,14 +21,13 @@ export class HomeComponent implements OnInit {
   {
     this._userProfile = JSON.stringify(this.authService.getClaims());
     let data = JSON.parse(this._userProfile);
-    console.log(data);
     let idToken = data.id_token;
     this.getTransferIp(idToken).subscribe((resp:any)=>{
-      console.log("TokenResp: "+resp);
+
+      this.response = JSON.stringify(resp);
     });
   }
   getTransferIp(token:string):  Observable<any> {
-    console.log("TokenID: "+token);
     let header = new HttpHeaders().set(
       "Authorization", token);
 
